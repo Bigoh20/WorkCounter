@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "769939090958",
+    "project_id": "work-counter-96687",
+    "storage_bucket": "work-counter-96687.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769939090958:android:45ea1998cb08fe74c1565f",
+        "android_client_info": {
+          "package_name": "com.bigoblog.workcounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769939090958-lv9pou5n4t7ovls63ej5e6fk5lqbermj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-v9CLIAerqui5yq8RNAsl1opO2lsRCmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769939090958-lv9pou5n4t7ovls63ej5e6fk5lqbermj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

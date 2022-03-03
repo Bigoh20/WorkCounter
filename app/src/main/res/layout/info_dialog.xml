@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_amount"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_acount" />
+
+    <TextView
+        android:id="@+id/tv_total_amount"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toEndOf="@+id/image_amount"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sacos molidos: 4506"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/image_kw"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_amount"
+        app:srcCompat="@drawable/ic_electrical" />
+
+    <TextView
+        android:id="@+id/tv_total_kw"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toEndOf="@+id/image_amount"
+        app:layout_constraintTop_toBottomOf="@id/tv_total_amount"
+        tools:text="Kw consumidos: 95"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/image_fine"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_kw"
+        app:srcCompat="@drawable/ic_bag" />
+
+    <TextView
+        android:id="@+id/tv_total_fine"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toEndOf="@+id/image_amount"
+        app:layout_constraintTop_toBottomOf="@id/tv_total_kw"
+        tools:text="Finos molidos: 3045"
+        android:gravity="center"/>
+
+
+    <ImageView
+        android:id="@+id/image_thick"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_fine"
+        app:srcCompat="@drawable/ic_bag" />
+
+    <TextView
+        android:id="@+id/tv_total_thick"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toEndOf="@+id/image_amount"
+        app:layout_constraintTop_toBottomOf="@id/tv_total_fine"
+        tools:text="Gruesos molidos: 1461"
+        android:gravity="center"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

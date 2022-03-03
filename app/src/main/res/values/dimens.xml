@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    Dimensiones default:
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_radius">16sp</dimen>
+    <dimen name="tiny_margin">4dp</dimen>
+    <dimen name="default_size_text">20sp</dimen>
+    <dimen name="small_text_size">15sp</dimen>
+    <dimen name="big_text_size">30sp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="big_margin">32dp</dimen>
+    <dimen name="big_padding">32dp</dimen>
+    <dimen name="default_imagev_size">125dp</dimen>
+
+</resources>
