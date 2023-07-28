@@ -33,7 +33,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TIL_amount"
-        android:layout_width="175dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/big_margin"
         android:ems="10"
@@ -46,14 +46,16 @@
         app:startIconDrawable="@drawable/ic_acount"
         app:endIconMode="clear_text"
         app:counterEnabled="true"
-        app:counterMaxLength="3">
+        app:counterMaxLength="5"
+        app:prefixText="$"
+        app:prefixTextColor="@color/purple_700">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/TIET_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="3" />
+            android:maxLength="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,7 +99,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/button_thick_text"
+            android:text="@string/button_eco_text"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         <Button
@@ -105,7 +107,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/button_fine_text"
+            android:text="@string/button_super_text"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -168,15 +170,15 @@
         android:layout_marginTop="@dimen/big_margin"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/hint_wats"
+        android:hint="@string/hint_gallons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TIL_description"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/ic_electrical"
+        app:startIconDrawable="@drawable/ic_gas"
         app:endIconMode="clear_text"
         app:counterEnabled="true"
-        app:counterMaxLength="3"
+        app:counterMaxLength="6"
         app:helperText="@string/helptext"
         app:helperTextTextColor="@color/purple_200"
        >
@@ -186,7 +188,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:maxLength="3"
+        android:maxLength="6"
         />
 
     </com.google.android.material.textfield.TextInputLayout>

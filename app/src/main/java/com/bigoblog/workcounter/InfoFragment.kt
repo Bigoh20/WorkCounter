@@ -75,14 +75,14 @@ class InfoFragment(private val workItem : WorkEntity) : Fragment() {
 
 
             //Renderizarlos en la pantalla:
-            mBinding.tvAmount.text = "Cantidad molida: ${workItem.amount}"
+            mBinding.tvAmount.text = "Dinero usado: $${workItem.price}"
             mBinding.tvDate.text = workItem.date
 
-            if (workItem.isThick) mBinding.tvType.text = "Tipo de afrecho: grueso"
-            else mBinding.tvType.text = "Tipo de afrecho: fino"
+            if (workItem.isEco) mBinding.tvType.text = "Tipo de gasolina: Eco"
+            else mBinding.tvType.text = "Tipo de gasolina: super"
 
             mBinding.tvDescription.text = "Descripción: ${workItem.commentary}"
-            mBinding.tvKw.text = "Kw gastados: ${workItem.kbUsed}"
+            mBinding.tvKw.text = "Galones usados: ${workItem.gallonsUsed}"
 
         }catch (e : Exception){
             Toast.makeText(context, getString(R.string.error_render), Toast.LENGTH_SHORT).show()
@@ -131,7 +131,7 @@ class InfoFragment(private val workItem : WorkEntity) : Fragment() {
          */
         if(!goToEditIntent){
             mActivity?.showViews()
-            mActivity?.supportActionBar?.title = getString(R.string.main_title)
+            mActivity?.supportActionBar?.title = getString(R.string.title)
         }
         //Quitar el menu bar.
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)

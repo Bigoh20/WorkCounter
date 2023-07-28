@@ -9,6 +9,7 @@ class WorkInit : Application(){
 
     companion object{
         lateinit var database : Database
+        lateinit var spItem : SharedManager
     }
     override fun onCreate() {
 
@@ -18,5 +19,7 @@ class WorkInit : Application(){
         Database::class.java,
         "Database",).build()
 
+        //Inicializar sharedPreferences:
+        spItem = SharedManager(applicationContext)
     }
 }

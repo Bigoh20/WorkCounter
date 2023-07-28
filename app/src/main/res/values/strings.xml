@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">Historial de molienda</string>
-    <string name="main_title">"Historial de molienda. "</string>
-    <string name="type_grueso">Tipo de afrecho: Grueso.</string>
-    <string name="type_fine">Tipo de afrecho: Fino.</string>
-    <string name="hint_amount">Cantidad</string>
+    <string name="app_name">Historial de gasolina</string>
+    <string name="title">Historial</string>
+    <string name="type_eco">Tipo de gasolina: Eco.</string>
+    <string name="type_super">Tipo de gasolina: Super.</string>
+    <string name="hint_amount">Dinero usado</string>
     <string name="hint_date">Fecha: DD/MM/AA</string>
-    <string name="button_thick_text">Afrecho grueso</string>
-    <string name="button_fine_text">Afrecho fino</string>
+    <string name="button_eco_text">Gas. eco</string>
+    <string name="button_super_text">Gas. super</string>
     <string name="title_add">Agregar nuevo registro</string>
     <string name="title2">Datos opcionales</string>
-    <string name="hint_description">Descripción del trabajo</string>
+    <string name="hint_description">Comentario</string>
     <string name="helptext">*Opcional</string>
-    <string name="hint_wats">Wats gastados</string>
-    <string name="error_empty_text">Campo vacío</string>
+    <string name="hint_gallons">Galones totales</string>
+    <string name="error_empty_text">Debes de llenar todos los campos</string>
     <string name="created_successfully">Historial creado correctamente.</string>
     <string name="error_type">Especifica que tipo de afrecho se molió</string>
     <string name="text_confirm">Confirmar</string>
@@ -26,7 +26,6 @@
     <string name="error_render">Ocurrió un error al renderizar los datos</string>
     <string name="text_edit">Editar</string>
     <string name="text_delete">Eliminar</string>
-    <string name="title_edit">Editar trabajo</string>
     <string name="failed_created">No se pudo crear el trabajo</string>
     <string name="go_down">Go to down</string>
     <string name="key_id">keyid</string>
@@ -40,4 +39,12 @@
     <string name="work_update_failed">No se pudo actualizar el trabajo</string>
     <string name="syntax_error">Ocurrió un error de sintaxis. Revise los campos</string>
     <string name="title1">Datos obligatorios</string>
+    <string name="show_config">Show config</string>
+    <string name="text_price_gas_eco">Precio gasolina eco</string>
+    <string name="text_price_gas_super">Precio gasolina super</string>
+    <string name="title_config">Precio por galón</string>
+    <string name="key_price_eco">priceEco0924</string>
+    <string name="key_price_super">priceSuper69420</string>
+    <string name="success_update">Valores actualizados</string>
+    <string name="error_zero_text">Debes introducir valores mayores a 0</string>
 </resources>

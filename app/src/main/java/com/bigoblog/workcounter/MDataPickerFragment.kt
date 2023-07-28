@@ -22,7 +22,7 @@ class MDataPickerFragment(val listener : (day : Int, month : Int, year : Int) ->
 
         //Crear la instancia de la interfaz picker
         //USAR EL CONTEXTO, luego la ruta del diseño (no obligatorio), el listner usando this, y los parametros de donde inicia el picker
-        val picker = DatePickerDialog(activity as Context, R.style.datePickerTheme, this, year, month, day)
+        val picker = DatePickerDialog(activity as Context,  this, year, month, day)
         //Limitar la fecha maxima a hoy, porque obviamente no se irá más pa' delante.
         picker.datePicker.maxDate = c.timeInMillis //Recuperar el tiempo en millis con ese método <--
         return picker

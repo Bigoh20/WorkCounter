@@ -1,8 +1,6 @@
 package com.bigoblog.workcounter.database
 
 import android.content.Context
-import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +15,7 @@ class WorkAdapter(private var workList: MutableList<WorkEntity>, val listener : 
 
 
     lateinit var context : Context
-    private val itemSystem = Resources.getSystem()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkHolder {
         context = parent.context
         val view = LayoutInflater.from(context).inflate(R.layout.item_history, parent, false)
@@ -75,27 +73,24 @@ class WorkAdapter(private var workList: MutableList<WorkEntity>, val listener : 
             val mContext = itemView.context
 
             //Sacar los resultados:
-            val amount = workItem.amount
+            val price = workItem.price
             val date = workItem.date
 
 
-            mBinding.tvAmount.text = "Cantidad: $amount"
+
+            mBinding.tvAmount.text = "Dinero gastado: $$price" //Price al ser un Int, no puede tener texto, por eso aquí uso "Cantidad: "
             mBinding.tvDate.text = date
 
-            //Pintar del color dependiendo de la cantidad.
-            when(amount) {
-                in 0 .. 10 ->  mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.red1))
-                in 11 .. 20 -> mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.yellow1))
-                in 21 .. 30 -> mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.green1))
-                in 31 .. 1000 -> mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.green2))
-            }
+            //Pintar del color dependiendo del tipo y escribirlo en la celda..
 
-            //Comprobar el tipo:
-            if(workItem.isThick){
-                mBinding.tvType.text = mContext.getString(R.string.type_grueso)
-            }else{
-                mBinding.tvType.text = mContext.getString(R.string.type_fine)
-            }
+                if(workItem.isEco){
+                    mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.green1))
+                    mBinding.tvType.text = mContext.getString(R.string.type_eco)
+                }else{
+                    mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.green2))
+                    mBinding.tvType.text = mContext.getString(R.string.type_super)
+                }
+
             //Ubicar su listener:
             mBinding.cvHistory.setOnClickListener {  listener.setOnClickListener(workItem)  }
 

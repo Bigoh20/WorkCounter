@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">@color/red2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/purple_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -15,8 +15,4 @@
     </style>
 
 
-    <style name="datePickerTheme" parent="android:Theme.Material.Light.Dialog">
-        <item name="android:colorAccent">#dd9933</item>
-
-    </style>
 </resources>

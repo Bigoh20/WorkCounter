@@ -8,11 +8,11 @@ import androidx.room.PrimaryKey
 data class WorkEntity(
     @PrimaryKey(autoGenerate = true)
     var id : Long = 0,
-    var amount : Int = 0,
+    var price : Double = 0.0,
     var date : String = "",
-    var isThick : Boolean = false,
+    var isEco : Boolean = false,
     var commentary : String = "",
-    var kbUsed : Int = 0
+    var gallonsUsed : Double = 0.0
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

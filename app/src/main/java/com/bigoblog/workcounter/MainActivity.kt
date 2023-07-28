@@ -1,5 +1,6 @@
 package com.bigoblog.workcounter
 
+import android.content.DialogInterface
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,11 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bigoblog.workcounter.database.WorkAdapter
 import com.bigoblog.workcounter.database.WorkEntity
 import com.bigoblog.workcounter.database.WorkInit.Companion.database
+import com.bigoblog.workcounter.database.WorkInit.Companion.spItem
 import com.bigoblog.workcounter.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-
+import java.lang.NumberFormatException
+import java.text.DecimalFormat
 
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -29,6 +34,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var soundSuccess1 : MediaPlayer? = null
     private var soundSuccess2 : MediaPlayer? = null
     private var soundSuccess3 : MediaPlayer? = null
+    private var soundWrong1 : MediaPlayer? = null
     //Crear la lista del work.
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +42,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        supportActionBar?.title = getString(R.string.main_title)
+        supportActionBar?.title = getString(R.string.title)
 
         setupAdapter()
         setupSounds()
+
 
         mBinding.fabAdd.setOnClickListener {
             //Abrir fragment para agregar un nuevo trabajo.
@@ -49,6 +56,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             modifyMenu(true) //Ocultar el menú
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupSharedPreferencesData()
     }
 
 
@@ -124,6 +136,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
      PRIVATE METHODS:
       */
 
+    private fun setupSharedPreferencesData(){
+        //Conseguir los textos de los precios almacenados en sharedPreferences
+        val ecoPrice = spItem.getString(getString(R.string.key_price_eco))
+        val superPrice = spItem.getString(getString(R.string.key_price_super))
+
+        //Si están vacíos inicializarlos:
+        if(ecoPrice.isEmpty()) spItem.putString(getString(R.string.key_price_eco), "2.56")
+        if(superPrice.isEmpty()) spItem.putString(getString(R.string.key_price_super), "3.57")
+    }
     private fun setupAdapter() {
 
         //Instancia del linearlayout & inicializar el adapter.
@@ -149,7 +170,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
          soundSuccess1 = MediaPlayer.create(this, R.raw.button_selected)
          soundSuccess2 = MediaPlayer.create(this, R.raw.sounds_button_press)
          soundSuccess3 = MediaPlayer.create(this, R.raw.button_success_3)
-
+         soundWrong1 = MediaPlayer.create(this, R.raw.wrong_selection)
     }
 
        private fun scrollRecyclerviewTo(toLastIndex : Boolean){
@@ -177,37 +198,42 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun renderData(view: View?){
-        //Este método renderiza la información en base a todos los elementos, es decir, estadisticas del total.
+        //Este método renderiza la información en base a todos los elementos, es decir, estadisticas del total y las muestra en un dialog
         //Recuperar los textview's:
         val tvAmount = view?.findViewById<TextView>(R.id.tv_total_amount)
-        val tvKw = view?.findViewById<TextView>(R.id.tv_total_kw)
-        val tvFine = view?.findViewById<TextView>(R.id.tv_total_fine)
-        val tvThick = view?.findViewById<TextView>(R.id.tv_total_thick)
+        val tvKw = view?.findViewById<TextView>(R.id.tv_total_gallons)
+        val tvEco = view?.findViewById<TextView>(R.id.tv_total_eco)
+        val tvSuper = view?.findViewById<TextView>(R.id.tv_total_super)
 
+        //Escribir valores solo en 2 decimales:
+        val df = DecimalFormat("#.00")
         //Recuperar los valores.
         doAsync {
             val allWorks = database.getDao().getAllWorks()
             uiThread {
-                var totalAmount = 0
-                var totalKw = 0
-                var totalFine = 0
-                var totalThick = 0
+                var totalPrice = 0.0
+                var totalGallons = 0.0
+                var totalEco = 0.0
+                var totalSuper = 0.0
+
 
                 for(currentWork in allWorks){
 
-                    totalAmount += currentWork.amount
-                    totalKw += currentWork.kbUsed
+                    totalPrice += currentWork.price
+                    totalGallons += currentWork.gallonsUsed
 
-                    if(currentWork.isThick) totalThick += currentWork.amount
-                    else totalFine += currentWork.amount
+                    //Sumar el precio al eco o super, dependiendo de cual sea:
+                    if(currentWork.isEco) totalEco += currentWork.price
+                    else totalSuper += currentWork.price
 
                 }
 
+
                 //Asignarles los valores a los tv.
-                tvAmount?.text = "Sacos molidos: $totalAmount"
-                tvKw?.text = "Kw gastados: $totalKw"
-                tvFine?.text = "Finos molidos: $totalFine"
-                tvThick?.text = "Gruesos molidos: $totalThick"
+                tvAmount?.text = "Dinero gastado: $${df.format(totalPrice)}"
+                tvKw?.text = "Galones rellenados: ${df.format(totalGallons)}"
+                tvEco?.text = "Dinero en eco: $${df.format(totalEco)}"
+                tvSuper?.text = "Dinero en super: $${df.format(totalSuper)}"
             }
         }
     }
@@ -245,12 +271,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             menu?.findItem(R.id.downItem)?.isVisible = true
             menu?.findItem(R.id.upItem)?.isVisible = true
             menu?.findItem(R.id.infoItem)?.isVisible = true
+            menu?.findItem(R.id.settingsItem)?.isVisible = true
 
         }else{
             invalidateOptionsMenu()
             menu?.findItem(R.id.downItem)?.isVisible = false
             menu?.findItem(R.id.upItem)?.isVisible = false
             menu?.findItem(R.id.infoItem)?.isVisible = false
+            menu?.findItem(R.id.settingsItem)?.isVisible = false
+
         }
         return super.onPrepareOptionsMenu(menu)
     }
@@ -286,6 +315,83 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     //Renderizar los datos.
                     renderData(view)
                     soundSuccess2?.start()
+
+                    true
+                }
+                R.id.settingsItem -> {
+
+                    val view = layoutInflater.inflate(R.layout.config_dialog, null)
+
+                    val dialog = MaterialAlertDialogBuilder(this)
+                        .setTitle(getString(R.string.title_config))
+                        .setView(view)
+                        .setPositiveButton("Aceptar") {_, _ ->}
+                        .setNegativeButton("Cancelar") {_, _ ->} //Cerrar el dialog.
+                        .setCancelable(false)
+                        .show()
+
+                    //Recuperar los editText
+                    val tietEco = view.findViewById<TextInputEditText>(R.id.tiet_eco_price)
+                    val tietSuper = view.findViewById<TextInputEditText>(R.id.tiet_super_price)
+
+
+
+                    //Recuperar los textos de sharedPreferences
+                    val priceEco = spItem.getString(getString(R.string.key_price_eco))
+                    val priceSuper = spItem.getString(getString(R.string.key_price_super))
+
+                    tietEco.setText(priceEco)
+                    tietSuper.setText(priceSuper)
+
+                    soundSuccess2?.start()
+
+                    dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
+
+                        try {
+                            //Conseguir los textos:
+                            val ecoGas = tietEco.text.toString()
+                            val superGas = tietSuper.text.toString()
+
+
+                            //Comprobar que los campos no estén vacíos:
+                            if (ecoGas.isEmpty() || superGas.isEmpty()) {
+
+                                Toast.makeText(
+                                    this, getString(R.string.error_empty_text),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                soundWrong1?.start()
+
+                            } else if (ecoGas.toDouble() <= 0.0 || superGas.toDouble() <= 0.0) {
+
+                                Toast.makeText(
+                                    this, getString(R.string.error_zero_text),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                soundWrong1?.start()
+
+                            } else {
+                                spItem.putString(getString(R.string.key_price_eco), ecoGas)
+                                spItem.putString(getString(R.string.key_price_super), superGas)
+
+                                Toast.makeText(
+                                    applicationContext,
+                                    getString(R.string.success_update), Toast.LENGTH_SHORT
+                                )
+                                    .show()
+
+                                soundSuccess1?.start()
+                                dialog.dismiss()
+                            }
+                        }catch (e : NumberFormatException){
+
+                            Toast.makeText(this, getString(R.string.syntax_error),
+                                Toast.LENGTH_SHORT).show()
+                            soundWrong1?.start()
+
+                        }
+                    }
+
 
                     true
                 }

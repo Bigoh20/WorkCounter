@@ -9,18 +9,24 @@
         android:title="@string/go_up"
         android:icon="@drawable/ic_arrow_up"
         android:checkable="true"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/downItem"
         android:title="@string/go_down"
         android:icon="@drawable/ic_arrow_down"
         android:checkable="true"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/infoItem"
         android:title="@string/show_info"
         android:icon="@drawable/ic_info"
         android:checkable="true"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
+    <item android:id="@+id/settingsItem"
+        android:title="@string/show_config"
+        android:icon="@drawable/ic_settings"
+        android:checkable="true"
+        app:showAsAction="always" />
 
 </menu>

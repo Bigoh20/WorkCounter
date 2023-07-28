@@ -9,92 +9,92 @@
         android:id="@+id/image_amount"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_acount" />
+        app:srcCompat="@drawable/ic_money" />
 
     <TextView
         android:id="@+id/tv_total_amount"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textSize="17sp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toEndOf="@+id/image_amount"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Sacos molidos: 4506"
+        app:layout_constraintTop_toTopOf="@id/image_amount"
+        tools:text="Dinero: 4506"
         android:gravity="center"/>
 
     <ImageView
-        android:id="@+id/image_kw"
+        android:id="@+id/image_gas"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image_amount"
-        app:srcCompat="@drawable/ic_electrical" />
+        app:srcCompat="@drawable/ic_gas" />
 
     <TextView
-        android:id="@+id/tv_total_kw"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:id="@+id/tv_total_gallons"
+        android:textSize="17sp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toEndOf="@+id/image_amount"
-        app:layout_constraintTop_toBottomOf="@id/tv_total_amount"
-        tools:text="Kw consumidos: 95"
+        app:layout_constraintStart_toEndOf="@+id/image_gas"
+        app:layout_constraintTop_toTopOf="@id/image_gas"
+        tools:text="Galones rellenados: 95"
         android:gravity="center"/>
 
     <ImageView
-        android:id="@+id/image_fine"
+        android:id="@+id/image_eco"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_kw"
-        app:srcCompat="@drawable/ic_bag" />
+        app:layout_constraintTop_toBottomOf="@id/image_gas"
+        app:srcCompat="@drawable/ic_eco" />
 
     <TextView
-        android:id="@+id/tv_total_fine"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:id="@+id/tv_total_eco"
+        android:textSize="17sp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toEndOf="@+id/image_amount"
-        app:layout_constraintTop_toBottomOf="@id/tv_total_kw"
-        tools:text="Finos molidos: 3045"
+        app:layout_constraintStart_toEndOf="@+id/image_eco"
+        app:layout_constraintTop_toTopOf="@id/image_eco"
+        tools:text="Dinero en eco: $3045"
         android:gravity="center"/>
 
 
     <ImageView
-        android:id="@+id/image_thick"
+        android:id="@+id/image_super"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_fine"
-        app:srcCompat="@drawable/ic_bag" />
+        app:layout_constraintTop_toBottomOf="@id/image_eco"
+        app:srcCompat="@drawable/ic_diamond" />
 
     <TextView
-        android:id="@+id/tv_total_thick"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:id="@+id/tv_total_super"
+        android:textSize="17sp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toEndOf="@+id/image_amount"
-        app:layout_constraintTop_toBottomOf="@id/tv_total_fine"
-        tools:text="Gruesos molidos: 1461"
+        app:layout_constraintStart_toEndOf="@+id/image_super"
+        app:layout_constraintTop_toTopOf="@id/image_super"
+        tools:text="Dinero en super: $1056"
         android:gravity="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
