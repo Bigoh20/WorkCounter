@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.bigoblog.workcounter.database.WorkEntity
+import com.bigoblog.workcounter.database.WorkInit
+import com.bigoblog.workcounter.database.WorkInit.Companion.spItem
 import com.bigoblog.workcounter.databinding.FragmentInfoBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.lang.Exception
@@ -75,14 +77,17 @@ class InfoFragment(private val workItem : WorkEntity) : Fragment() {
 
 
             //Renderizarlos en la pantalla:
-            mBinding.tvAmount.text = "Dinero usado: $${workItem.price}"
+            mBinding.tvAmount.text = "${getString(R.string.hint_amount)}: $${workItem.price}"
             mBinding.tvDate.text = workItem.date
 
-            if (workItem.isEco) mBinding.tvType.text = "Tipo de gasolina: Eco"
-            else mBinding.tvType.text = "Tipo de gasolina: super"
+            if (workItem.isGasOne) mBinding.tvType.text = getString(R.string.type_gas_text) +
+                    spItem.getString(getString(R.string.key_gas_one))
 
-            mBinding.tvDescription.text = "Descripción: ${workItem.commentary}"
-            mBinding.tvKw.text = "Galones usados: ${workItem.gallonsUsed}"
+            else mBinding.tvType.text = getString(R.string.type_gas_text) +
+                    spItem.getString(getString(R.string.key_gas_two))
+
+            mBinding.tvDescription.text = "${getString(R.string.description)}: ${workItem.commentary}"
+            mBinding.tvKw.text = "${getString(R.string.gallons_used)}: ${workItem.gallonsUsed}"
 
         }catch (e : Exception){
             Toast.makeText(context, getString(R.string.error_render), Toast.LENGTH_SHORT).show()
@@ -108,8 +113,8 @@ class InfoFragment(private val workItem : WorkEntity) : Fragment() {
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(R.string.title_delete_work))
                 .setCancelable(true)
-                .setPositiveButton("Confirmar") { _, _ -> }
-                .setNegativeButton("Cancelar") {_, _ ->}
+                .setPositiveButton("OK") { _, _ -> }
+                .setNegativeButton(getString(R.string.cancel_text)) {_, _ ->}
                 .show()
 
         }

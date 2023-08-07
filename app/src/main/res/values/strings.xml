@@ -1,50 +1,70 @@
 <resources>
-    <string name="app_name">Historial de gasolina</string>
-    <string name="title">Historial</string>
-    <string name="type_eco">Tipo de gasolina: Eco.</string>
-    <string name="type_super">Tipo de gasolina: Super.</string>
-    <string name="hint_amount">Dinero usado</string>
-    <string name="hint_date">Fecha: DD/MM/AA</string>
+    <string name="app_name">Fuel Track</string>
+    <string name="title">History</string>
+    <string name="type_gas_text">Type of gasoline: </string>
+    <string name="hint_amount">Money used</string>
+    <string name="hint_date">Date: DD/MM/YY</string>
     <string name="button_eco_text">Gas. eco</string>
     <string name="button_super_text">Gas. super</string>
-    <string name="title_add">Agregar nuevo registro</string>
-    <string name="title2">Datos opcionales</string>
-    <string name="hint_description">Comentario</string>
-    <string name="helptext">*Opcional</string>
-    <string name="hint_gallons">Galones totales</string>
-    <string name="error_empty_text">Debes de llenar todos los campos</string>
-    <string name="created_successfully">Historial creado correctamente.</string>
-    <string name="error_type">Especifica que tipo de afrecho se molió</string>
-    <string name="text_confirm">Confirmar</string>
-    <string name="key_amount">keyamount</string>
-    <string name="key_date">keydate</string>
-    <string name="key_isthick">keyisthick</string>
-    <string name="key_description">keydescription</string>
-    <string name="key_wats">keywats</string>
-    <string name="title_info">Detalles</string>
-    <string name="title_work">Día de trabajo</string>
-    <string name="error_render">Ocurrió un error al renderizar los datos</string>
-    <string name="text_edit">Editar</string>
-    <string name="text_delete">Eliminar</string>
-    <string name="failed_created">No se pudo crear el trabajo</string>
+    <string name="title_add">Add new register</string>
+    <string name="title2">Optional data</string>
+    <string name="hint_description">Comentary</string>
+    <string name="helptext">*Optional</string>
+    <string name="hint_gallons">Total gallons</string>
+    <string name="error_empty_text">You need to complete all the fields</string>
+    <string name="created_successfully">Fuel track created successfully.</string>
+    <string name="text_confirm">Confirm</string>
+    <string name="key_amount" translatable="false">keyamount</string>
+    <string name="key_date" translatable="false">keydate</string>
+    <string name="key_isthick" translatable="false">keyisthick</string>
+    <string name="key_description" translatable="false">keydescription</string>
+    <string name="key_wats" translatable="false">keywats</string>
+    <string name="title_info">Details</string>
+    <string name="title_work">Day of work</string>
+    <string name="error_render">There was an error while rendering the data</string>
+    <string name="text_edit">Edit</string>
+    <string name="text_delete">Delete</string>
+    <string name="failed_created">Could not create work</string>
     <string name="go_down">Go to down</string>
-    <string name="key_id">keyid</string>
-    <string name="title_delete_work">¿Eliminar trabajo?</string>
-    <string name="deleted_successfully">"Trabajo eliminado con éxito. "</string>
+    <string name="key_id" translatable="false">keyid</string>
+    <string name="title_delete_work">Delete this gas track?</string>
+    <string name="deleted_successfully">"Work deleted successfully. "</string>
     <string name="show_info">Show info</string>
-    <string name="full_info">Estadísticas:</string>
+    <string name="full_info">Stats</string>
     <string name="go_up">Go up</string>
-    <string name="error_edit">"No se puede editar el trabajo, intente más tarde :( "</string>
-    <string name="work_update_success">Trabajo actualizado correctamente</string>
-    <string name="work_update_failed">No se pudo actualizar el trabajo</string>
-    <string name="syntax_error">Ocurrió un error de sintaxis. Revise los campos</string>
-    <string name="title1">Datos obligatorios</string>
+    <string name="error_edit">"The work could not be created due to an error "</string>
+    <string name="work_update_success">Work created successfully</string>
+    <string name="work_update_failed">The work cannot be updated now</string>
+    <string name="syntax_error">Syntax error. Check the fields</string>
+    <string name="title1">Required data</string>
     <string name="show_config">Show config</string>
-    <string name="text_price_gas_eco">Precio gasolina eco</string>
-    <string name="text_price_gas_super">Precio gasolina super</string>
-    <string name="title_config">Precio por galón</string>
-    <string name="key_price_eco">priceEco0924</string>
-    <string name="key_price_super">priceSuper69420</string>
-    <string name="success_update">Valores actualizados</string>
-    <string name="error_zero_text">Debes introducir valores mayores a 0</string>
+    <string name="text_price_gas_eco">Price gas eco</string>
+    <string name="text_price_gas_super">Price gas super</string>
+    <string name="title_config">Gasoline configuration</string>
+
+    <string name="success_update">Values updated</string>
+    <string name="error_zero_text">You need a value grater than -1</string>
+    <string name="text_name_gas_one">Name of gas 1</string>
+    <string name="text_name_gas_two">Name of gas 2</string>
+
+
+    <string name="key_price_one" translatable="false">KEY_GAS_ONE_PRICE</string>
+    <string name="key_price_two" translatable="false">KEY_GAS_TWO_PRICE</string>
+    <string name="key_gas_one" translatable="false">KEY_GAS_ONE_NAME</string>
+    <string name="key_gas_two" translatable="false">KEY_GAS_TWO_NAME</string>
+    <string name="gas_one_default">Gas. 1</string>
+    <string name="gas_two_default">Gas. 2</string>
+    <string name="error_no_gas">You have to select the type of gas</string>
+    <string name="empty_description">Empty description</string>
+    <string name="date_selected_text">"Date selected:"</string>
+    <string name="gallons_used">Gallons filled</string>
+    <string name="money_in">Money in</string>
+    <string name="description">Description</string>
+    <string name="text_price_gas_one">Price of gas 1</string>
+    <string name="text_price_gas_two">Price of gas 2</string>
+    <string name="price_gallon_text">*Price per gallon</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="total_gas">Total registrations</string>
+
+
 </resources>

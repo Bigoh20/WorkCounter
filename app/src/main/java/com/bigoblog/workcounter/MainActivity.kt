@@ -18,7 +18,6 @@ import com.bigoblog.workcounter.database.WorkInit.Companion.spItem
 import com.bigoblog.workcounter.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.lang.NumberFormatException
@@ -137,13 +136,22 @@ class MainActivity : AppCompatActivity(), OnClickListener {
       */
 
     private fun setupSharedPreferencesData(){
-        //Conseguir los textos de los precios almacenados en sharedPreferences
-        val ecoPrice = spItem.getString(getString(R.string.key_price_eco))
-        val superPrice = spItem.getString(getString(R.string.key_price_super))
+
 
         //Si están vacíos inicializarlos:
-        if(ecoPrice.isEmpty()) spItem.putString(getString(R.string.key_price_eco), "2.56")
-        if(superPrice.isEmpty()) spItem.putString(getString(R.string.key_price_super), "3.57")
+        if(spItem.getString(getString(R.string.key_gas_one)).isEmpty()){
+            spItem.putString(getString(R.string.key_gas_one), "Gas 1")
+        }
+        if(spItem.getString(getString(R.string.key_gas_two)).isEmpty()) {
+            spItem.putString(getString(R.string.key_gas_two), "Gas 2")
+        }
+        if(spItem.getString(getString(R.string.key_price_one)).isEmpty()){
+            spItem.putString(getString(R.string.key_price_one), "2.57") //Default values
+        }
+        if(spItem.getString(getString(R.string.key_price_two)).isEmpty()) {
+            spItem.putString(getString(R.string.key_price_two), "3.99") //Default values
+        }
+
     }
     private fun setupAdapter() {
 
@@ -204,7 +212,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         val tvKw = view?.findViewById<TextView>(R.id.tv_total_gallons)
         val tvEco = view?.findViewById<TextView>(R.id.tv_total_eco)
         val tvSuper = view?.findViewById<TextView>(R.id.tv_total_super)
-
+        val tvTotal = view?.findViewById<TextView>(R.id.tv_total_numbers)
         //Escribir valores solo en 2 decimales:
         val df = DecimalFormat("#.00")
         //Recuperar los valores.
@@ -215,6 +223,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 var totalGallons = 0.0
                 var totalEco = 0.0
                 var totalSuper = 0.0
+                val totalGasHistory = allWorks.size
 
 
                 for(currentWork in allWorks){
@@ -223,17 +232,24 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     totalGallons += currentWork.gallonsUsed
 
                     //Sumar el precio al eco o super, dependiendo de cual sea:
-                    if(currentWork.isEco) totalEco += currentWork.price
+                    if(currentWork.isGasOne) totalEco += currentWork.price
                     else totalSuper += currentWork.price
 
                 }
 
 
                 //Asignarles los valores a los tv.
-                tvAmount?.text = "Dinero gastado: $${df.format(totalPrice)}"
-                tvKw?.text = "Galones rellenados: ${df.format(totalGallons)}"
-                tvEco?.text = "Dinero en eco: $${df.format(totalEco)}"
-                tvSuper?.text = "Dinero en super: $${df.format(totalSuper)}"
+                tvAmount?.text = "${getString(R.string.hint_amount)}: $${df.format(totalPrice)}"
+                tvKw?.text = "${getString(R.string.gallons_used)}: ${df.format(totalGallons)}"
+
+                //Money in *gasname*: *totalMoney*
+                tvEco?.text = "${getString(R.string.money_in)} " +
+                        "${spItem.getString(getString(R.string.key_gas_one))}: $${df.format(totalEco)}"
+
+                tvSuper?.text = "${getString(R.string.money_in)} " +
+                        "${spItem.getString(getString(R.string.key_gas_two))}: $${df.format(totalSuper)}"
+
+                tvTotal?.text = "${getString(R.string.total_gas)}: $totalGasHistory"
             }
         }
     }
@@ -327,21 +343,32 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                         .setView(view)
                         .setPositiveButton("Aceptar") {_, _ ->}
                         .setNegativeButton("Cancelar") {_, _ ->} //Cerrar el dialog.
-                        .setCancelable(false)
                         .show()
 
                     //Recuperar los editText
-                    val tietEco = view.findViewById<TextInputEditText>(R.id.tiet_eco_price)
-                    val tietSuper = view.findViewById<TextInputEditText>(R.id.tiet_super_price)
+
+                    val tietGasOneName = view.findViewById<TextInputEditText>(R.id.tiet_gas_one_name)
+                    val tietGasTwoName = view.findViewById<TextInputEditText>(R.id.tiet_gas_two_name)
+
+                    val tietGasOnePrice = view.findViewById<TextInputEditText>(R.id.tiet_gas_one_price)
+                    val tietGasTwoPrice = view.findViewById<TextInputEditText>(R.id.tiet_gas_two_price)
 
 
 
                     //Recuperar los textos de sharedPreferences
-                    val priceEco = spItem.getString(getString(R.string.key_price_eco))
-                    val priceSuper = spItem.getString(getString(R.string.key_price_super))
 
-                    tietEco.setText(priceEco)
-                    tietSuper.setText(priceSuper)
+                    val nameOne = spItem.getString(getString(R.string.key_gas_one))
+                    val nameTwo = spItem.getString(getString(R.string.key_gas_two))
+
+                    val priceOne = spItem.getString(getString(R.string.key_price_one))
+                    val priceTwo = spItem.getString(getString(R.string.key_price_two))
+
+
+                    tietGasOneName.setText(nameOne)
+                    tietGasTwoName.setText(nameTwo)
+
+                    tietGasOnePrice.setText(priceOne)
+                    tietGasTwoPrice.setText(priceTwo)
 
                     soundSuccess2?.start()
 
@@ -349,12 +376,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                         try {
                             //Conseguir los textos:
-                            val ecoGas = tietEco.text.toString()
-                            val superGas = tietSuper.text.toString()
+                            val gasOneName = tietGasOneName.text.toString().trim()
+                            val gasTwoName =  tietGasTwoName.text.toString().trim()
+
+                            val gasOnePrice = tietGasOnePrice.text.toString()
+                            val gasTwoPrice = tietGasTwoPrice.text.toString()
 
 
                             //Comprobar que los campos no estén vacíos:
-                            if (ecoGas.isEmpty() || superGas.isEmpty()) {
+                            if (gasOneName.isEmpty() || gasTwoName.isEmpty() ||
+                                gasOnePrice.isEmpty() || gasTwoPrice.isEmpty()) {
 
                                 Toast.makeText(
                                     this, getString(R.string.error_empty_text),
@@ -362,7 +393,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                                 ).show()
                                 soundWrong1?.start()
 
-                            } else if (ecoGas.toDouble() <= 0.0 || superGas.toDouble() <= 0.0) {
+                            } else if (gasOnePrice.toDouble() < 0.0 || gasTwoPrice.toDouble() < 0.0) {
 
                                 Toast.makeText(
                                     this, getString(R.string.error_zero_text),
@@ -371,8 +402,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                                 soundWrong1?.start()
 
                             } else {
-                                spItem.putString(getString(R.string.key_price_eco), ecoGas)
-                                spItem.putString(getString(R.string.key_price_super), superGas)
+                                spItem.putString(getString(R.string.key_gas_one), gasOneName)
+                                spItem.putString(getString(R.string.key_gas_two), gasTwoName)
+
+                                spItem.putString(getString(R.string.key_price_one), gasOnePrice)
+                                spItem.putString(getString(R.string.key_price_two), gasTwoPrice)
 
                                 Toast.makeText(
                                     applicationContext,

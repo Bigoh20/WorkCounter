@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Historial de gasolina</string>
+    <string name="title">Historial</string>
+    <string name="type_gas_text">Tipo de gasolina: </string>
+    <string name="hint_amount">Dinero usado</string>
+    <string name="hint_date">Fecha: DD/MM/AA</string>
+    <string name="button_eco_text">Gas. eco</string>
+    <string name="button_super_text">Gas. super</string>
+    <string name="title_add">Agregar nuevo registro</string>
+    <string name="title2">Datos opcionales</string>
+    <string name="hint_description">Comentario</string>
+    <string name="helptext">*Opcional</string>
+    <string name="hint_gallons">Galones totales</string>
+    <string name="error_empty_text">Debes de llenar todos los campos</string>
+    <string name="created_successfully">Historial creado correctamente.</string>
+    <string name="text_confirm">Confirmar</string>
+    <string name="title_info">Detalles</string>
+    <string name="title_work">Día de trabajo</string>
+    <string name="error_render">Ocurrió un error al renderizar los datos</string>
+    <string name="text_edit">Editar</string>
+    <string name="text_delete">Eliminar</string>
+    <string name="failed_created">No se pudo crear el trabajo</string>
+    <string name="go_down">Ir abajo</string>
+    <string name="title_delete_work">¿Eliminar este historial?</string>
+    <string name="deleted_successfully">"Trabajo eliminado con éxito. "</string>
+    <string name="show_info">Mostrar información</string>
+    <string name="full_info">Estadísticas:</string>
+    <string name="go_up">Ir arriba</string>
+    <string name="error_edit">"No se puede editar el trabajo, intente más tarde :( "</string>
+    <string name="work_update_success">Trabajo actualizado correctamente</string>
+    <string name="work_update_failed">No se pudo actualizar el trabajo</string>
+    <string name="syntax_error">Ocurrió un error de sintaxis. Revise los campos</string>
+    <string name="title1">Datos obligatorios</string>
+    <string name="show_config">Mostrar configuración</string>
+    <string name="text_price_gas_eco">Precio gasolina eco</string>
+    <string name="text_price_gas_super">Precio gasolina super</string>
+    <string name="title_config">Configuración de gasolina</string>
+
+    <string name="success_update">Valores actualizados</string>
+    <string name="error_zero_text">Necesitas un valor mayor a -1</string>
+    <string name="text_name_gas_one">Nombre de gasolina 1</string>
+    <string name="text_name_gas_two">Nombre de gasolina 2</string>
+
+
+
+    <string name="gas_one_default">Gasolina 1</string>
+    <string name="gas_two_default">Gasolina 2</string>
+    <string name="error_no_gas">Tienes que seleccionar el tipo de gasolina</string>
+    <string name="empty_description">Descripción vacía</string>
+    <string name="date_selected_text">"Fecha seleccionada:</string>
+    <string name="gallons_used">Galones llenados</string>
+    <string name="money_in">Dinero en</string>
+    <string name="description">Descripción</string>
+    <string name="text_price_gas_one">Precio de gasolina 1</string>
+    <string name="text_price_gas_two">Precio de gasolina 2</string>
+    <string name="price_gallon_text">*Precio por galón</string>
+    <string name="cancel_text">Cancelar</string>
+    <string name="total_gas">Registros totales</string>
+
+
+
+
+
+</resources>

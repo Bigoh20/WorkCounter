@@ -9,7 +9,7 @@
         android:id="@+id/image_amount"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/tv_total_amount"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:id="@+id/image_gas"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image_amount"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/tv_total_gallons"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,15 +55,15 @@
         android:id="@+id/image_eco"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image_gas"
-        app:srcCompat="@drawable/ic_eco" />
+        app:srcCompat="@drawable/ic_one" />
 
     <TextView
         android:id="@+id/tv_total_eco"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,18 +76,18 @@
 
 
     <ImageView
-        android:id="@+id/image_super"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_eco"
-        app:srcCompat="@drawable/ic_diamond" />
+    android:id="@+id/image_super"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="40dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/image_eco"
+    app:srcCompat="@drawable/ic_two" />
 
     <TextView
         android:id="@+id/tv_total_super"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,5 +96,28 @@
         app:layout_constraintStart_toEndOf="@+id/image_super"
         app:layout_constraintTop_toTopOf="@id/image_super"
         tools:text="Dinero en super: $1056"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/image_total"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_super"
+        app:srcCompat="@drawable/ic_numbers" />
+
+    <TextView
+        android:id="@+id/tv_total_numbers"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_total"
+        app:layout_constraintTop_toTopOf="@id/image_total"
+        tools:text="Registros totales: 34"
         android:gravity="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

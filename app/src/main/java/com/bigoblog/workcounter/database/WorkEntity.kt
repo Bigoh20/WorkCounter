@@ -10,7 +10,7 @@ data class WorkEntity(
     var id : Long = 0,
     var price : Double = 0.0,
     var date : String = "",
-    var isEco : Boolean = false,
+    var isGasOne : Boolean = false,
     var commentary : String = "",
     var gallonsUsed : Double = 0.0
 ){

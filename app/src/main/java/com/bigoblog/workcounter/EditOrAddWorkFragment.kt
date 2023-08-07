@@ -24,7 +24,7 @@ class EditOrAddWorkFragment(val id : Long? = 0L) : Fragment() {
     private lateinit var mBinding : FragmentAddBinding
     private var mActivity : MainActivity? = null
     //Crear la variable para saber si está seleccionado el tipo de gas.
-    private var isEco : Boolean? = null
+    private var isGasOne : Boolean? = null
     //Sonido que se reproducirá cuando algo va mal:
     private var soundWrong1 : MediaPlayer? = null
     private var isEditMode = false
@@ -43,12 +43,30 @@ class EditOrAddWorkFragment(val id : Long? = 0L) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-     
+
+        renderGasTypes()
         setupIsEditMode()
         setupActionBar()
         setupListeners()
         soundWrong1 = MediaPlayer.create(context, R.raw.wrong_selection)
       
+    }
+
+    private fun renderGasTypes() {
+//        var gasType1 = spItem.getString(getString(R.string.key_gas_one))
+//        var gasType2 = spItem.getString(getString(R.string.key_gas_two))
+//
+//        if(gasType1.isEmpty()){
+//            gasType1 = getString(R.string.gas_one_default)
+//        }
+//
+//        if(gasType2.isEmpty()){
+//            gasType2 = getString(R.string.gas_two_default)
+//        }
+
+        mBinding.buttonGasOne.text = spItem.getString(getString(R.string.key_gas_one))
+        mBinding.buttonGasTwo.text = spItem.getString(getString(R.string.key_gas_two))
+
     }
 
     private fun setupIsEditMode() {
@@ -72,13 +90,15 @@ class EditOrAddWorkFragment(val id : Long? = 0L) : Fragment() {
         mBinding.buttonGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
-                    R.id.button_fine -> isEco = false
-                    R.id.button_thick -> isEco = true
+                    R.id.button_gas_one -> isGasOne = true
+                    R.id.button_gas_two -> isGasOne = false
                 }
             } else {
-                if (group.checkedButtonId == View.NO_ID) isEco = null
+                if (group.checkedButtonId == View.NO_ID) isGasOne = null
             }
         }
+
+
         
 
     }
@@ -86,8 +106,8 @@ class EditOrAddWorkFragment(val id : Long? = 0L) : Fragment() {
     private fun renderData(work : WorkEntity) {
         mBinding.TIETAmount.setText(work.price.toString())
         mBinding.TIETDate.setText(work.date)
-        if(work.isEco) mBinding.buttonGroup.check(R.id.button_thick)
-        else mBinding.buttonGroup.check(R.id.button_fine)
+        if(work.isGasOne) mBinding.buttonGroup.check(R.id.button_gas_one)
+        else mBinding.buttonGroup.check(R.id.button_gas_two)
 
 
         mBinding.TIETDescription.setText(work.commentary)
@@ -135,23 +155,25 @@ try {
         mBinding.TILDate.error = null
     }
 
-    if (isEco == null) {
+    if (isGasOne == null) {
         allFieldsOk = false
-        Toast.makeText(context, "Debes seleccionar el tipo de gasolina", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.error_no_gas), Toast.LENGTH_SHORT).show()
     }
 
     if (description.isEmpty()) {
-        description = "Descripción vacía."
+        description = getString(R.string.empty_description)
     }
 
     //Si no hay galones especificados, por defecto dividirlo al total. Comprobando que los otros datos sean válidos
-    if (gallonsUsed.isEmpty() && price.isNotEmpty() && isEco != null) {
+    if (gallonsUsed.isEmpty() && price.isNotEmpty() && isGasOne != null) {
 
 
-        gallonsUsed = if (isEco!!) (price.toDouble() /
-                spItem.getString(getString(R.string.key_price_eco)).toDouble()).toString()
+        gallonsUsed = if (isGasOne!!) (price.toDouble() /
+                spItem.getString(getString(R.string.key_price_one)).toDouble()).toString()
         else (price.toDouble() /
-                spItem.getString(getString(R.string.key_price_super)).toDouble()).toString()
+                spItem.getString(getString(R.string.key_price_two)).toDouble()).toString()
+
+
 
         gallonsUsed = df.format(gallonsUsed.toDouble())
 
@@ -165,7 +187,7 @@ try {
             //Actualizar el trabajo ya existente para no perder su ID
             gasEntity.price = price.toDouble()
             gasEntity.date = date
-            gasEntity.isEco = isEco!!
+            gasEntity.isGasOne = isGasOne!!
             gasEntity.commentary = description
             gasEntity.gallonsUsed = gallonsUsed.toDouble()
 
@@ -176,7 +198,7 @@ try {
             val work2 = WorkEntity(
                 price = price.toDouble(),
                 date = date,
-                isEco = isEco!!,
+                isGasOne = isGasOne!!,
                 commentary = description,
                 gallonsUsed = gallonsUsed.toDouble()
             )
@@ -212,7 +234,7 @@ try {
           //Una vez seleccionado el campo crear un string:
           val date = "$day/${month+1}/$year"
           //Rellenar el edittext.
-        mBinding.TIETDate.setText("Fecha seleccionada: $date")
+        mBinding.TIETDate.setText("${getString(R.string.date_selected_text)} $date")
     }
 
 

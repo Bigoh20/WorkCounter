@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_eco_price"
+        android:id="@+id/til_gas_one_name"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -13,39 +22,86 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginTop="@dimen/default_margin"
-        android:hint="@string/text_price_gas_eco"
+        android:hint="@string/text_name_gas_one"
         app:startIconDrawable="@drawable/ic_gas"
+        app:counterEnabled="true"
+        app:counterMaxLength="10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_gas_one_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="10"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_gas_one_price"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_gas_one_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/default_margin"
+        android:hint="@string/text_price_gas_one"
+        app:startIconDrawable="@drawable/ic_money"
+        app:helperText="@string/price_gallon_text"
         app:counterEnabled="true"
         app:counterMaxLength="5"
         app:prefixText="$"
         app:prefixTextColor="@color/purple_700">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_eco_price"
+            android:id="@+id/tiet_gas_one_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="5"
             android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_super_price<"
+        android:id="@+id/til_gas_two_name"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_eco_price"
+        app:layout_constraintTop_toBottomOf="@id/til_gas_one_price"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginTop="@dimen/default_margin"
-        android:hint="@string/text_price_gas_super"
-        app:startIconDrawable="@drawable/ic_diamond"
+        android:hint="@string/text_name_gas_two"
+        app:startIconDrawable="@drawable/ic_gas"
+        app:counterEnabled="true"
+        app:counterMaxLength="10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_gas_two_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="10"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_gas_two_price"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_gas_two_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/default_margin"
+        android:hint="@string/text_price_gas_two"
+        app:startIconDrawable="@drawable/ic_money"
+        app:helperText="@string/price_gallon_text"
         app:counterEnabled="true"
         app:counterMaxLength="5"
         app:prefixText="$"
         app:prefixTextColor="@color/purple_700">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_super_price"
+            android:id="@+id/tiet_gas_two_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="5"
@@ -53,3 +109,5 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

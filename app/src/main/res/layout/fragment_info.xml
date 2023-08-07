@@ -80,7 +80,7 @@
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginTop="@dimen/big_margin"
         tools:text="Descripción: No contiene descripción"
-        android:maxLines="4"
+        android:maxLines="6"
         android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

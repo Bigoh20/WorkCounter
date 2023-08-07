@@ -1,5 +1,6 @@
 package com.bigoblog.workcounter.database
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bigoblog.workcounter.OnClickListener
 import com.bigoblog.workcounter.R
+import com.bigoblog.workcounter.database.WorkInit.Companion.spItem
 import com.bigoblog.workcounter.databinding.ItemHistoryBinding
 
 class WorkAdapter(private var workList: MutableList<WorkEntity>, val listener : OnClickListener) :
@@ -68,6 +70,7 @@ class WorkAdapter(private var workList: MutableList<WorkEntity>, val listener : 
         private val mBinding = ItemHistoryBinding.bind(view)
 
 
+        @SuppressLint("SetTextI18n")
         fun render(workItem: WorkEntity) {
             //Crear el context para acceder a los métodos normales.
             val mContext = itemView.context
@@ -78,17 +81,23 @@ class WorkAdapter(private var workList: MutableList<WorkEntity>, val listener : 
 
 
 
-            mBinding.tvAmount.text = "Dinero gastado: $$price" //Price al ser un Int, no puede tener texto, por eso aquí uso "Cantidad: "
+            mBinding.tvAmount.text = "${mContext.getString(R.string.hint_amount)}: $$price" //Price al ser un Int, no puede tener texto, por eso aquí uso "Cantidad: "
             mBinding.tvDate.text = date
 
             //Pintar del color dependiendo del tipo y escribirlo en la celda..
 
-                if(workItem.isEco){
+                if(workItem.isGasOne){
                     mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.green1))
-                    mBinding.tvType.text = mContext.getString(R.string.type_eco)
+
+                    mBinding.tvType.text = mContext.getString(R.string.type_gas_text) +
+                            " " +
+                            spItem.getString(mContext.getString(R.string.key_gas_one))
                 }else{
-                    mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor(R.color.green2))
-                    mBinding.tvType.text = mContext.getString(R.string.type_super)
+                    mBinding.cvHistory.setCardBackgroundColor(mContext.resources.getColor( R.color.green2))
+
+                    mBinding.tvType.text = mContext.getString(R.string.type_gas_text) +
+                            " " +
+                            spItem.getString(mContext.getString(R.string.key_gas_two))
                 }
 
             //Ubicar su listener:

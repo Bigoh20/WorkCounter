@@ -95,7 +95,7 @@
         app:singleSelection="true">
 
         <Button
-            android:id="@+id/button_thick"
+            android:id="@+id/button_gas_one"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         <Button
-            android:id="@+id/button_fine"
+            android:id="@+id/button_gas_two"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
